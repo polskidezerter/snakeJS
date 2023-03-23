@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="snakeJScssOnly.css">
+</head>
+<body>
+    <div id="score">0</div>
+    <div class="display" id="display">
+        <!--main menu so it can be easyly changed-->
+        <div class="mainMenu" id="mainMenu">
+            <button type="button" onclick="start()">start</button>
+            <div><label for="interval">speed (lower is faster)</label>
+            <input type="number" id="interval" name="interval" value="100"></div>
+            <div><label for="increse speed">Increse speed?</label>
+            <input type="checkbox" id="increse speed" name="increse speed" value="true" checked></div>
+            <label for="width">width (anything lower than 1 is unplayable)</label>
+            <input type="number" id="width" name="width" value="10">
+            <label for="height">height (anything lower than 2 will break the game)</label>
+            <input type="number" id="height" name="height" value="10">
+        </div>
+    </div>
+    <div class="mobile_controller" id="mobile_controller">
+        <!--controls for mobile-->
+        <div class="CPartv"></div><button class="CPartb" type="button" onclick="buttonPressed(0)">up</button>
+        <div class="CPartv"></div><button class="CPartb" type="button" onclick="buttonPressed(2)">left</button>
+        <div class="CPartv"></div><button class="CPartb" type="button" onclick="buttonPressed(3)">right</button>
+        <div class="CPartv"></div><button class="CPartb" type="button" onclick="buttonPressed(1)">down</button>
+        <div class="CPartv"></div>
+    </div>
+    <div style="height:10%;width:100%;display: flex;justify-content: space-around;"id="spriteContainer"><!--sprites-->
+        <!--without food-->
+        <div style="height:100%;aspect-ratio:1/1;"id="0"><div class="C1"><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="G20"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div></div></div>
+        <div style="height:100%;aspect-ratio:1/1;"id="1"><div class="C2"><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="G30"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div></div></div>
+        <div style="height:100%;aspect-ratio:1/1;"id="2"><div class="C1"><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="G40"></div><div class="BoT"><div class="B2"></div><div class="B2"></div><div class="B2"></div></div><div class="B1"></div><div class="G10"></div><div class="G10"></div><div class="G10"></div><div class="B1"></div></div></div>
+        <div style="height:100%;aspect-ratio:1/1;"id="3"><div class="C1"><div class="B1"></div><div class="G10"></div><div class="G10"></div><div class="G10"></div><div class="B1"></div><div class="G40"></div><div class="BoT"><div class="B2"></div><div class="B2"></div><div class="B2"></div></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div></div></div>
+        <div style="height:100%;aspect-ratio:1/1;"id="4"><div class="C1"><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="BoT"><div class="B2"></div><div class="B2"></div><div class="B2"></div></div><div class="G40"></div><div class="B1"></div><div class="G10"></div><div class="G10"></div><div class="G10"></div><div class="B1"></div></div></div>
+        <div style="height:100%;aspect-ratio:1/1;"id="5"><div class="C1"><div class="B1"></div><div class="G10"></div><div class="G10"></div><div class="G10"></div><div class="B1"></div><div class="BoT"><div class="B2"></div><div class="B2"></div><div class="B2"></div></div><div class="G40"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div></div></div>
+        <!--with food-->
+        <div style="height:100%;aspect-ratio:1/1;"id="6"><div class="C1"><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="G21"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div></div></div>
+        <div style="height:100%;aspect-ratio:1/1;"id="7"><div class="C2"><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="G31"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div></div></div>
+        <div style="height:100%;aspect-ratio:1/1;"id="8"><div class="C1"><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="G41"></div><div class="BoT"><div class="B2"></div><div class="B2"></div><div class="B2"></div></div><div class="B1"></div><div class="G11"></div><div class="G11"></div><div class="G11"></div><div class="B1"></div></div></div>
+        <div style="height:100%;aspect-ratio:1/1;"id="9"><div class="C1"><div class="B1"></div><div class="G11"></div><div class="G11"></div><div class="G11"></div><div class="B1"></div><div class="G41"></div><div class="BoT"><div class="B2"></div><div class="B2"></div><div class="B2"></div></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div></div></div>
+        <div style="height:100%;aspect-ratio:1/1;"id="10"><div class="C1"><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="BoT"><div class="B2"></div><div class="B2"></div><div class="B2"></div></div><div class="G41"></div><div class="B1"></div><div class="G11"></div><div class="G11"></div><div class="G11"></div><div class="B1"></div></div></div>
+        <div style="height:100%;aspect-ratio:1/1;"id="11"><div class="C1"><div class="B1"></div><div class="G11"></div><div class="G11"></div><div class="G11"></div><div class="B1"></div><div class="BoT"><div class="B2"></div><div class="B2"></div><div class="B2"></div></div><div class="G41"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div><div class="B1"></div></div></div>
+    </div>
+    <script src="snakeJSjsOnly.js"></script> 
+</body>
+</html>
